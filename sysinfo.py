@@ -1,12 +1,6 @@
 import os
-import locale
 
-
-def _print_locale_info():
-    loc = locale.getdefaultlocale()
-    print('\tDefault locale: {0}, encoding: {1}'.format(*loc))
-    loc = locale.getlocale()
-    print('\tCurrent locale: {0}, encoding: {1}'.format(*loc))    
+from utils import _print_locale_info
 
 
 def bare_system_info():
