@@ -4,6 +4,9 @@ import gettext
 
 from utils import _init_locale, _spacer
 
+# to put gettext into __builtins__ (not recommended in libraries):
+# gettext.install('basic_gettext', 'locale', names=['ngettext'])
+
 
 def basic_translated_text():
     lang, _ = locale.getlocale()
