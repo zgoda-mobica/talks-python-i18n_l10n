@@ -1,6 +1,6 @@
 import os
 
-from utils import _print_locale_info
+from utils import _print_locale_info, _spacer
 
 
 def bare_system_info():
@@ -16,6 +16,7 @@ def clean_system_info():
 
 def main():
     bare_system_info()
+    _spacer()
     clean_system_info()
 
 if __name__ == '__main__':
