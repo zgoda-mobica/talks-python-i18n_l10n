@@ -52,8 +52,8 @@ def languages():
         territory = params[1]
         official_languages = format_list(get_official_languages(territory), locale=locale)
         all_languages = format_list(get_official_languages(territory, regional=True, de_facto=True), locale=locale)
-        print('\tterritory: {0}'.format(territory))
-        print('\t\tofficial: {0}; all: {1}'.format(official_languages, all_languages))
+        print('\tterritory: {0}'.format(locale.territories[territory]))
+        print('\t\tofficial: {0}\n\t\tall: {1}'.format(official_languages, all_languages))
 
 
 def language_info():
