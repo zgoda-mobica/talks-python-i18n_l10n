@@ -4,11 +4,15 @@ Python Talks: Let Your App Speak User's Language (i18n/l10n)
 
 Introductory talk on i18n/l10n support in Python.
 
-## gettext
+Python has built-in support for both translation and localization provided by [`gettext`](https://www.gnu.org/software/gettext/) package. To be able to use any of these features, gettext support has to be enabled during compilation. All linux distributions have this feature enabled in default system Python instance but it depends on actual presence of shared libraries from gettext package. On Windows these features are always present.
+
+## `gettext`
+
+Gettext translations are grouped into so-called "catalogs" that provide complete set of translated messages for particular language. The structure of message catalog allow for overriding parts of message set for different territories supported by application, for example one can have basic `de` translations for German language as spoken in Germany, with some messages overriden for `de_AT` (territory: Austria). This allows to be as specific as developer needs.
 
 ### Plurals
 
-Polish is not the most complicated language when it comes to plurals, although clearly stands out of the crowd by providing 3 forms when most languages has only 2. Russian for example has 3 forms too, but take a look and compare complexity of the formula.
+Polish is not the most complicated language when it comes to plurals, although clearly stands out of the crowd by providing 3 forms when most languages have only 2. Russian for example has 3 forms too, but take a look and compare complexity of the formula.
 
 Polish:
 ```
@@ -51,6 +55,29 @@ nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 :
 
 And of couse languages that do not have plural forms exist, eg. Georgian, native North Asian (Yakut, Uyghur) and almost all of East Asian languages. Chinese is specific in that it generally does not have plural form except when it comes to personal pronouns (eg. "We" vs. "I").
 
+### Examples
+
+1. [Getting system information](sysinfo.py)
+2. [Setting locale](set_locale.py)
+3. [Locale L10N functions](locale_settings.py)
+4. [Basic gettext translations](basic_gettext.py)
+
 ## Babel
 
-[Babel](http://babel.pocoo.org/) is the most comprehensive and featureful i18n and l10n library for Python. It is based on [CLDR database](http://cldr.unicode.org/) of locale data, providing wider range of localization options than basic `gettext` that ships with linux systems, eg. in addition to country/territory names, the locale data also provides access to names of languages, scripts, variants, time zones, and more. Some of the data is closely related to number and date formatting. Availability of provided data is independent of system language catalogs.
+[Babel](http://babel.pocoo.org/) is the most comprehensive and featureful i18n and l10n library for Python. It is based on [CLDR database](http://cldr.unicode.org/) of locale data, providing wider range of localization options than basic `gettext` that ships with linux systems, eg. in addition to country/territory names, the locale data also provides access to names of languages, scripts, variants, time zones, and more. Some of the data is closely related to number and date formatting. Availability of provided data is independent of system language support.
+
+### Language data
+
+While CLDR contains language data for territories, this data can not be trated as scientific because it is only as accurate as possible at the time of CLDR publication. Current Babel version (2.4.0) uses data from CLDR v29 which was released Mar. 16 2016 while current CLDR is at v31 released Apr. 7 2017 (v31.0.1).
+
+### Translations with Babel
+
+Babel uses `gettext` to provide i18n support but its power is in tools that simplify message extraction from source files.
+
+### Examples
+
+1. [Localized locale data](babel_locale.py)
+2. [Date related functions](babel_dates.py)
+3. [Number formats](babel_numbers.py)
+4. [Miscellaneous data from CLDR](babel_misc.py)
+5. [Localizing measures](babel_measures.py)
