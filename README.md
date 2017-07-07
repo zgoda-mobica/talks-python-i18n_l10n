@@ -4,13 +4,15 @@ Python Talks: Let Your App Speak User's Language (i18n/l10n)
 
 Introductory talk on i18n/l10n support in Python.
 
+## `locale`
+
 Basic localication support is provided by [locale module](https://docs.python.org/3/library/locale.html) which wraps ANSI C locale implementation. Actual support for various locale items depends on what is provided by operating system, the most complete and usually valid support is provided on Linux. Both Windows and OS X have long history of "embrace and extend" practices but support in latest versions is generally good (OS X > 10.5, Windows 10).
 
 Changing locale can have side effects that may be surprising, eg. changing `LC_CTYPE` affects formatting of floating point numbers in string objects, and changing `LC_TIME` affects date and time formatting operations with `strftime()`.
 
-Python has built-in support for translation provided by [`gettext`](https://www.gnu.org/software/gettext/) package. To be able to use any of these features, gettext support has to be enabled during compilation. All linux distributions have this feature enabled in default system Python instance but it depends on actual presence of shared libraries from gettext package. On Windows these features are always present but require independent installation of gettext.
-
 ## `gettext`
+
+Python has built-in support for translation provided by [`gettext`](https://www.gnu.org/software/gettext/) package. To be able to use any of these features, gettext support has to be enabled during compilation. All linux distributions have this feature enabled in default system Python instance but it depends on actual presence of shared libraries from gettext package. On Windows these features are always present but require independent installation of gettext.
 
 Gettext translations are grouped into so-called "catalogs" that provide complete set of translated messages for particular language. The structure of message catalog allow for overriding parts of message set for different territories supported by application, for example one can have basic `de` translations for German language as spoken in Germany, with some messages overriden for `de_AT` (territory: Austria). This allows to be as specific as developer needs.
 
