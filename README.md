@@ -4,7 +4,11 @@ Python Talks: Let Your App Speak User's Language (i18n/l10n)
 
 Introductory talk on i18n/l10n support in Python.
 
-Python has built-in support for both translation and localization provided by [`gettext`](https://www.gnu.org/software/gettext/) package. To be able to use any of these features, gettext support has to be enabled during compilation. All linux distributions have this feature enabled in default system Python instance but it depends on actual presence of shared libraries from gettext package. On Windows these features are always present.
+Basic localication support is provided by [locale module](https://docs.python.org/3/library/locale.html) which wraps ANSI C locale implementation. Actual support for various locale items depends on what is provided by operating system, the most complete and usually valid support is provided on Linux. Both Windows and OS X have long history of "embrace and extend" practices but support in latest versions is generally good (OS X > 10.5, Windows 10).
+
+Changing locale can have side effects that may be surprising, eg. changing `LC_CTYPE` affects formatting of floating point numbers in string objects, and changing `LC_TIME` affects date and time formatting operations with `strftime()`.
+
+Python has built-in support for translation provided by [`gettext`](https://www.gnu.org/software/gettext/) package. To be able to use any of these features, gettext support has to be enabled during compilation. All linux distributions have this feature enabled in default system Python instance but it depends on actual presence of shared libraries from gettext package. On Windows these features are always present but require independent installation of gettext.
 
 ## `gettext`
 
@@ -79,7 +83,39 @@ While CLDR contains language data for territories, this data can not be trated a
 
 ### Translations with Babel
 
-Babel uses `gettext` to provide i18n support but its power is in tools that simplify message extraction from source files.
+Babel uses `gettext` to provide i18n support but its power is in tools that simplify working with message catalogs. Original `gettext` tools like `xgettext` or `msgfmt` work on file basis, which is perfect in Makefile-based projects, but it's real PITA when one has to manually compile list of files that contain translatable strings. Here `pybabel` program comes with great help:
+
+```text
+$ pybabel --help
+Usage: pybabel command [options] [args]
+
+Options:
+  --version       show program's version number and exit
+  -h, --help      show this help message and exit
+  --list-locales  print all known locales and exit
+  -v, --verbose   print as much as possible
+  -q, --quiet     print as little as possible
+
+commands:
+  compile  compile message catalogs to MO files
+  extract  extract messages from source files and generate a POT file
+  init     create new message catalogs from a POT file
+  update   update existing message catalogs from a POT file
+```
+
+Initialization workflow when using `pybabel`:
+
+1. create `pybabel` configuration file that specifies mapping of message extractors and file types;
+1. `extract` messages into template file
+1. `init` - initialize message catalog for specific locale from messages in template
+
+Update workflow:
+
+1. `extract` messages into template file
+1. `update` message catalog applying any changes introduced in template
+1. `compile` message catalog source into machine objects
+
+Example workflow scripts are provided in [`scripts` directory of this project](scripts/).
 
 ### Babel examples
 
@@ -87,4 +123,4 @@ Babel uses `gettext` to provide i18n support but its power is in tools that simp
 1. [Date related functions](babel_dates.py)
 1. [Number formats](babel_numbers.py)
 1. [Miscellaneous data from CLDR](babel_misc.py)
-1. [Localizing measures](babel_measures.py)
+1. [Localizing measurement units](babel_measures.py)
