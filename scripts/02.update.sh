@@ -3,7 +3,7 @@
 CFGFILE="babel.cfg"
 LOCALEDIR="../locale"
 TEMPLATEFILE="$LOCALEDIR/messages.pot"
-LANGUAGES=("de" "it" "es")
+LANGUAGES=("de" "it" "es" "ga")
 
 # -k extracts additionally strings marked by `lazy_gettext()` function from Flask-Babel
 pybabel extract -F $CFGFILE -k lazy_gettext -o $TEMPLATEFILE ../

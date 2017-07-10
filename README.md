@@ -60,6 +60,20 @@ From European languages Irish has most forms (5):
 nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : (n>2 && n<7) ? 2 :(n>6 && n<11) ? 3 : 4;
 ```
 
+This translates to human: "I have 5 forms numbered 0 to 4, for singular use form 0, for n == 2 use form 1, for n between 2 and 7 use form 2, for n between 7 and 11 use form 3 and for all other use form 4". In translation source file this looks as follows:
+
+```text
+#: /home/jazg/projects/talks-python-i18n_l10n/basic_gettext.py:25
+#, python-format
+msgid "Value %(num)d means singular"
+msgid_plural "Value %(num)d means plural"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+```
+
 The only language that has more forms is Arabic (6):
 
 ```javascript
@@ -77,11 +91,11 @@ And of couse languages that do not have plural forms exist, eg. Georgian, native
 
 ## Babel
 
-[Babel](http://babel.pocoo.org/) is the most comprehensive and featureful i18n and l10n library for Python. It is based on [CLDR database](http://cldr.unicode.org/) of locale data, providing wider range of localization options than basic `gettext` that ships with linux systems, eg. in addition to country/territory names, the locale data also provides access to names of languages, scripts, variants, time zones, and more. Some of the data is closely related to number and date formatting. Availability of provided data is independent of system language support.
+[Babel](http://babel.pocoo.org/) is the most comprehensive and featureful i18n and l10n library for Python. It is based on [CLDR database](http://cldr.unicode.org/) of locale data, providing wider range of localization options than basic `gettext` that ships with linux systems, eg. in addition to country/territory names, the locale data also provides access to names of languages, scripts, variants, time zones, and more. Some of the data is closely related to number and date formatting. In Linux systems availability of provided data is independent of system language support whereas `gettext` provides only localization data for system-supported languages.
 
 ### Language data
 
-While CLDR contains language data for territories, this data can not be trated as scientific because it is only as accurate as possible at the time of CLDR publication. Current Babel version (2.4.0) uses data from CLDR v29 which was released Mar. 16 2016 while current CLDR is at v31 released Apr. 7 2017 (v31.0.1).
+While CLDR contains spoken language statistics for territories, this data can not be trated as scientific because it is only as accurate as possible at the time of CLDR publication. Current Babel version (2.4.0) uses data from CLDR v29 which was released Mar. 16 2016 while current CLDR is at v31 released Apr. 7 2017 (v31.0.1).
 
 ### Translations with Babel
 
