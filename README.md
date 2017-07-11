@@ -91,7 +91,7 @@ And of couse languages that do not have plural forms exist, eg. Georgian, native
 
 ## Babel
 
-[Babel](http://babel.pocoo.org/) is the most comprehensive and featureful i18n and l10n library for Python. It is based on [CLDR database](http://cldr.unicode.org/) of locale data, providing wider range of localization options than basic `gettext` that ships with linux systems, eg. in addition to country/territory names, the locale data also provides access to names of languages, scripts, variants, time zones, and more. Some of the data is closely related to number and date formatting. In Linux systems availability of provided data is independent of system language support whereas `gettext` provides only localization data for system-supported languages.
+[Babel](http://babel.pocoo.org/) is the most comprehensive and featureful i18n and l10n library for Python. It is based on [CLDR database](http://cldr.unicode.org/) of locale data, providing wider range of localization options than basic locale system that ships with linux systems, eg. in addition to country/territory names, the locale data also provides access to names of languages, scripts, variants, time zones, and more. Some of the data is closely related to number and date formatting. In Linux systems availability of provided data is independent of system language support whereas `gettext` provides only localization data for system-supported languages.
 
 ### Language data
 
