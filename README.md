@@ -48,7 +48,7 @@ ru_RU.utf8
 ru_UA.utf8
 ```
 
-In the above example I have installed complete sets of locales for English, French, Polish and Russian languages in UTF-8 script. `C` and `POSIX` are default fallback locales and are always available, when applying translation untranslated messages are returned. Full locale name consists of locale name (eg. `en`), territory specification (eg. `ZA`) and optionally script. Some territories have default script so the script name may be omitted from full locale name.
+In the above example I have installed complete sets of locales for English, French, Polish and Russian languages in UTF-8 script. `C` and `POSIX` are default fallback locales and are always available, when applying translation untranslated messages are returned. Full locale name consists of ISO 639-1 language name (eg. `en`), ISO 3166-1 territory specification (eg. `ZA`) and optionally script. Some territories have default script so the script name may be omitted from full locale name.
 
 ## `gettext`
 
