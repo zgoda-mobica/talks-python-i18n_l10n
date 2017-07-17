@@ -91,11 +91,11 @@ And of couse languages that do not have plural forms exist, eg. Georgian, native
 
 ## Babel
 
-[Babel](http://babel.pocoo.org/) is the most comprehensive and featureful i18n and l10n library for Python. It is based on [CLDR database](http://cldr.unicode.org/) of locale data, providing wider range of localization options than basic locale system that ships with linux systems, eg. in addition to country/territory names, the locale data also provides access to names of languages, scripts, variants, time zones, and more. Some of the data is closely related to number and date formatting. In Linux systems availability of provided data is independent of system language support whereas `gettext` provides only localization data for system-supported languages.
+[Babel](http://babel.pocoo.org/) is the most comprehensive and featureful i18n and l10n library for Python. It is based on [CLDR database](http://cldr.unicode.org/) of locale data, providing wider range of localization options than basic locale system that ships with linux systems, eg. in addition to country/territory names, the locale data also provides access to names of languages, scripts, variants, time zones, and more. Some of the data is closely related to number and date formatting. In Linux systems availability of provided data is independent of system language support whereas `locale` provides only localization data for system-supported languages. This is specifically handy in case of web applications that may provide l10n support for languages that are not installed in server environment.
 
-### Language data
+### Spoken language stats
 
-While CLDR contains spoken language statistics for territories, this data can not be trated as scientific because it is only as accurate as possible at the time of CLDR publication. Current Babel version (2.4.0) uses data from CLDR v29 which was released Mar. 16 2016 while current CLDR is at v31 released Apr. 7 2017 (v31.0.1).
+While CLDR contains some spoken language statistics for territories, this data can not be trated as scientific because it is only as accurate as possible at the time of CLDR publication. Current Babel version (2.4.0) uses data from CLDR v29 which was released Mar. 16 2016 while current CLDR is at v31 released Apr. 7 2017 (v31.0.1).
 
 ### Translations with Babel
 
@@ -121,7 +121,7 @@ commands:
 
 Initialization workflow when using `pybabel`:
 
-1. create `pybabel` configuration file that specifies mapping of message extractors and file types;
+1. create `pybabel` configuration file that specifies mapping of message extractors and file types ([see example](scripts/babel.cfg))
 1. `extract` messages into template file
 1. `init` - initialize message catalog for specific locale from messages in template
 
