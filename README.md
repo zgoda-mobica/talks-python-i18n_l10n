@@ -8,13 +8,53 @@ Introductory talk on i18n/l10n support in Python.
 
 Basic localication support is provided by [locale module](https://docs.python.org/3/library/locale.html) which wraps ANSI C locale implementation. Actual support for various locale items depends on what is provided by operating system, the most complete and usually valid support is provided on Linux. Both Windows and OS X have long history of "embrace and extend" practices but support in latest versions is generally good (OS X > 10.5, Windows 10).
 
-Changing locale can have side effects that may be surprising, eg. changing `LC_CTYPE` affects formatting of floating point numbers in string objects, and changing `LC_TIME` affects date and time formatting operations with `strftime()`.
+Changing locale can have side effects that should not be surprising, eg. changing `LC_CTYPE` affects formatting of floating point numbers in string objects, and changing `LC_TIME` affects date and time formatting operations with `strftime()`.
+
+On Linux systems, locale information is limited to installed language support. To list installed locales run `locale -a`:
+
+```shell
+$ locale -a
+C
+C.UTF-8
+en_AG
+en_AG.utf8
+en_AU.utf8
+en_BW.utf8
+en_CA.utf8
+en_DK.utf8
+en_GB.utf8
+en_HK.utf8
+en_IE.utf8
+en_IN
+en_IN.utf8
+en_NG
+en_NG.utf8
+en_NZ.utf8
+en_PH.utf8
+en_SG.utf8
+en_US.utf8
+en_ZA.utf8
+en_ZM
+en_ZM.utf8
+en_ZW.utf8
+fr_BE.utf8
+fr_CA.utf8
+fr_CH.utf8
+fr_FR.utf8
+fr_LU.utf8
+pl_PL.utf8
+POSIX
+ru_RU.utf8
+ru_UA.utf8
+```
+
+In the above example I have installed complete sets of locales for English, French, Polish and Russian languages in UTF-8 script. `C` and `POSIX` are default fallback locales and are always available, when applying translation untranslated messages are returned. Full locale name consists of locale name (eg. `en`), territory specification (eg. `ZA`) and optionally script. Some territories have default script so the script name may be omitted from full locale name.
 
 ## `gettext`
 
-Python has built-in support for translation provided by [`gettext`](https://www.gnu.org/software/gettext/) package. To be able to use any of these features, gettext support has to be enabled during compilation. All linux distributions have this feature enabled in default system Python instance but it depends on actual presence of shared libraries from gettext package. On Windows these features are always present but require independent installation of gettext.
+Python has built-in support for translation provided by [`gettext`](https://www.gnu.org/software/gettext/) package. To be able to use any of these features, gettext support has to be enabled during compilation. All linux distributions have this feature enabled in default system Python instance but it depends on actual presence of shared libraries from gettext package which is not installed by default on most server instances. On Windows these features are always present but require independent installation of gettext.
 
-Gettext translations are grouped into so-called "catalogs" that provide complete set of translated messages for particular language. The structure of message catalog allow for overriding parts of message set for different territories supported by application, for example one can have basic `de` translations for German language as spoken in Germany, with some messages overriden for `de_AT` (territory: Austria). This allows to be as specific as developer needs.
+Gettext translations are grouped into so-called "catalogs" that provide complete set of translated messages for particular language. The structure of message catalog allow for overriding parts of message set for different territories supported by application, for example one can have basic `de` translations for German language, with some messages overriden for `de_AT` (territory: Austria) or `de_DE` (territory: Germany). This allows to be as specific as developer needs, eg. when making localized web site versions for different German-speaking countries. In my example I could make localized French versions for Belgium, Canada, Switzerland, France and Luxembourg or Russian for Russia and Ukraine.
 
 ### Plurals
 
